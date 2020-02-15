@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DDD.Application.Repositories;
 using DDD.Core;
 using DDD.Core.Aggregates.CustomerAggregate;
+using DDD.Core.Aggregates.EventLogAggregate;
 using DDD.Core.Aggregates.TransactionAggregate;
 
 namespace DDD.Application
@@ -11,6 +12,7 @@ namespace DDD.Application
     {
         public ICustomerRepository CustomerRepo { get; }
         public ITransactionRepository TransactionRepo { get; set; }
+        public IEventLogRepository EventLogRepo { get; set; }
 
 
         private readonly AppDatabaseContext _dbContext;
@@ -21,6 +23,7 @@ namespace DDD.Application
             _dbContext = dbContext;
             CustomerRepo=new CustomerRepository(_dbContext);
             TransactionRepo = new TransactionRepository(dbContext);
+            EventLogRepo = new EventLogRepository(dbContext);
         }
 
         public void Dispose()

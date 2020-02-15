@@ -7,7 +7,7 @@ namespace DDD.Application
 {
     public static class MediatorExtension
     {
-        public static async Task DispatchDomainEventsAsync(this IMediator mediator, AppDatabaseContext ctx)
+        public static async Task DispatchDomainEventsAsync(this ICustomMediator mediator, AppDatabaseContext ctx)
         {
             var domainEntities = ctx.ChangeTracker
                 .Entries<Entity>()

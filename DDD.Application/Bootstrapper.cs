@@ -13,6 +13,8 @@ namespace DDD.Application
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMediatR(typeof(Bootstrapper).Assembly);
             services.AddDbContext<AppDatabaseContext>(dbContextOptions);
+            services.AddScoped<ICustomMediator, CustomMediator>();
+            services.AddScoped<IEventStore, EventStore>();
         }
     }
 }

@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DDD.Application;
 using DDD.Application.Commands;
 using DDD.Application.Queries;
 using DDD.WebApi.DTO;
 using DDD.WebApi.ViewModels;
-using MediatR;
 
 namespace DDD.WebApi.ServiceFacades
 {
     public class CustomerServiceFacade
     {
-        private readonly IMediator _mediator;
+        private readonly ICustomMediator _mediator;
 
-        public CustomerServiceFacade(IMediator mediator)
+        public CustomerServiceFacade(ICustomMediator mediator)
         {
             _mediator = mediator;
         }
