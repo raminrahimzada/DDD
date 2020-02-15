@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DDD.WebApi.Services;
+using DDD.WebApi.ServiceFacades;
 using DDD.WebApi.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DDD.WebApi.Controllers
@@ -11,78 +10,43 @@ namespace DDD.WebApi.Controllers
     [Route("[controller]")]
     public class CustomerController : Controller
     {
-        private readonly CustomerService _customerService;
+        private readonly CustomerServiceFacade _customerServiceFacade;
 
-        public CustomerController(CustomerService customerService)
+        public CustomerController(CustomerServiceFacade customerServiceFacade)
         {
-            _customerService = customerService;
+            _customerServiceFacade = customerServiceFacade;
         }
 
         [Route(nameof(Create))]
         [HttpGet]
         public async Task<IActionResult> Create([FromQuery]CreateCustomerViewModel model)
         {
-            try
-            {
-                var result=await _customerService.CreateCustomer(model);
-                return Json(result);
-            }
-            catch (Exception e)
-            {
-                return Error(e);
-            }
+            var result=await _customerServiceFacade.CreateCustomer(model);
+            return Json(result);
         }
         
         [Route(nameof(MakeGift))]
         [HttpGet]
         public async Task<IActionResult> MakeGift( Guid from, Guid to,decimal amount)
         {
-            try
-            {
-                await _customerService.MakeGift(from, to, amount);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return Error(e);
-            }
+            var result = await _customerServiceFacade.MakeGift(from, to, amount);
+            return Json(result);
         }
-        
+
         [Route(nameof(ChangeInfo))]
         [HttpGet]
-        public async Task<IActionResult> ChangeInfo([FromQuery]ChangeCustomerInfoViewModel model)
+        public async Task<IActionResult> ChangeInfo([FromQuery] ChangeCustomerInfoViewModel model)
         {
-            try
-            {
-                await _customerService.ChangeInfo(model);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return Error(e);
-            }
+            var result = await _customerServiceFacade.ChangeInfo(model);
+            return Json(result);
         }
 
         [Route(nameof(Info))]
         [HttpGet]
-        public async Task<IActionResult> Info([FromQuery]GetCustomerInfoViewModel model)
+        public async Task<IActionResult> Info([FromQuery] GetCustomerInfoViewModel model)
         {
-            try
-            {
-                var result = await _customerService.GetInfo(model);
-                return Json(result);
-            }
-            catch (Exception e)
-            {
-                return Error(e);
-            }
-        }
-
-        //helper
-        private IActionResult Error(Exception e)
-        {
-            Response.StatusCode = StatusCodes.Status400BadRequest;
-            return Json(new {ErrorCode = e.ToString(), Message = e.Message});
+            var result = await _customerServiceFacade.GetInfo(model);
+            return Json(result);
         }
     }
 }

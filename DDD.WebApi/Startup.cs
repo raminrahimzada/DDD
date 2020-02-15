@@ -1,5 +1,5 @@
 using DDD.Application;
-using DDD.WebApi.Services;
+using DDD.WebApi.ServiceFacades;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +28,7 @@ namespace DDD.WebApi
             Bootstrapper.Register(services, b => b.UseSqlServer(connectionString));
 
             //current layer's registration
-            services.AddScoped<CustomerService>();
+            services.AddScoped<CustomerServiceFacade>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
