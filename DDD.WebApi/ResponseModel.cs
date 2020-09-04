@@ -1,5 +1,5 @@
 using System;
-using DDD.Core.Exceptions;
+using DDD.Domain.Exceptions;
 
 namespace DDD.WebApi
 {

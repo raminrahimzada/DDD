@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DDD.Core.Exceptions
+namespace DDD.Domain.Exceptions
 {
     public abstract class DomainException : Exception
     {

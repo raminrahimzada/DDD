@@ -1,8 +1,7 @@
 ﻿using System;
-using DDD.Core.Base;
+using DDD.Domain.Base;
 
-
-namespace DDD.Core.Events
+namespace DDD.Domain.Events
 {
     public class TransferCompletedDomainEvent : DomainEvent
     {

@@ -1,4 +1,4 @@
-﻿using DDD.Core.Aggregates.EventLogAggregate;
+﻿using DDD.Domain.Aggregates.EventLogAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

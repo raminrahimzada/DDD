@@ -2,7 +2,7 @@
 using DDD.Base;
 using MediatR;
 
-namespace DDD.Core.Base
+namespace DDD.Domain.Base
 {
     public abstract class DomainEvent : IDomainEvent,INotification
     {

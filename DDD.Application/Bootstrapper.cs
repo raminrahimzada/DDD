@@ -2,7 +2,7 @@
 using System.Reflection;
 using DDD.Application.Base;
 using DDD.Base;
-using DDD.Core;
+using DDD.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +15,7 @@ namespace DDD.Application
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            
             services.AddMediatR(typeof(Bootstrapper).GetTypeInfo().Assembly);
             services.AddScoped<IMediator, Mediator>();
             services.AddDbContext<AppDatabaseContext>(dbContextOptions);

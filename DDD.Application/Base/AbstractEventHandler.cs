@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using DDD.Base;
-using DDD.Core.Base;
+using DDD.Domain.Base;
 using MediatR;
 
 namespace DDD.Application.Base

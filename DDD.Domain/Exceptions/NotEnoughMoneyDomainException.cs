@@ -1,4 +1,4 @@
-﻿namespace DDD.Core.Exceptions
+﻿namespace DDD.Domain.Exceptions
 {
     public class NotEnoughMoneyDomainException:DomainException
     {

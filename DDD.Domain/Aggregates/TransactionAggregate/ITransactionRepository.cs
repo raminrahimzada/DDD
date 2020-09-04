@@ -1,6 +1,6 @@
 ﻿using DDD.Base;
 
-namespace DDD.Core.Aggregates.TransactionAggregate
+namespace DDD.Domain.Aggregates.TransactionAggregate
 {
     public interface ITransactionRepository : IRepository<Transaction>
     {

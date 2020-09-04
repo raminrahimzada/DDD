@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DDD.Base;
 
-namespace DDD.Core.Base
+namespace DDD.Domain.Base
 {
     public abstract class AggregateRoot : IAggregateRoot
     {

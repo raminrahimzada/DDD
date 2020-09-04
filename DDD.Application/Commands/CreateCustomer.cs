@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using DDD.Application.Base;
 using DDD.Base;
-using DDD.Core;
-using DDD.Core.Aggregates.CustomerAggregate;
+using DDD.Domain;
+using DDD.Domain.Aggregates.CustomerAggregate;
 using FluentValidation;
 
 namespace DDD.Application.Commands

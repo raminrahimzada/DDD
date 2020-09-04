@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DDD.Core.Aggregates.CustomerAggregate;
-using DDD.Core.Aggregates.EventLogAggregate;
-using DDD.Core.Aggregates.TransactionAggregate;
+using DDD.Domain.Aggregates.CustomerAggregate;
+using DDD.Domain.Aggregates.EventLogAggregate;
+using DDD.Domain.Aggregates.TransactionAggregate;
 
-namespace DDD.Core
+namespace DDD.Domain
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using DDD.Application.Configurations;
 using DDD.Base;
-using DDD.Core.Aggregates.CustomerAggregate;
-using DDD.Core.Aggregates.EventLogAggregate;
-using DDD.Core.Aggregates.TransactionAggregate;
+using DDD.Domain.Aggregates.CustomerAggregate;
+using DDD.Domain.Aggregates.EventLogAggregate;
+using DDD.Domain.Aggregates.TransactionAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace DDD.Application

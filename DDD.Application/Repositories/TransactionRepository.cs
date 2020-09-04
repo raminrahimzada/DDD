@@ -1,4 +1,4 @@
-﻿using DDD.Core.Aggregates.TransactionAggregate;
+﻿using DDD.Domain.Aggregates.TransactionAggregate;
 
 namespace DDD.Application.Repositories
 {

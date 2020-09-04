@@ -1,5 +1,5 @@
-﻿using DDD.Core.Aggregates.CustomerAggregate;
-using DDD.Core.Aggregates.TransactionAggregate;
+﻿using DDD.Domain.Aggregates.CustomerAggregate;
+using DDD.Domain.Aggregates.TransactionAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

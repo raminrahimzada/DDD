@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using DDD.Application.Repositories;
-using DDD.Core;
-using DDD.Core.Aggregates.CustomerAggregate;
-using DDD.Core.Aggregates.EventLogAggregate;
-using DDD.Core.Aggregates.TransactionAggregate;
+using DDD.Domain;
+using DDD.Domain.Aggregates.CustomerAggregate;
+using DDD.Domain.Aggregates.EventLogAggregate;
+using DDD.Domain.Aggregates.TransactionAggregate;
 
 namespace DDD.Application
 {

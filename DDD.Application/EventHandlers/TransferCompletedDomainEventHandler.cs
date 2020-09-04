@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using DDD.Application.Base;
-using DDD.Core;
-using DDD.Core.Aggregates.TransactionAggregate;
-using DDD.Core.Events;
+using DDD.Domain;
+using DDD.Domain.Aggregates.TransactionAggregate;
+using DDD.Domain.Events;
 
 namespace DDD.Application.EventHandlers
 {

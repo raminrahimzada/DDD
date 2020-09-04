@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DDD.Core.Aggregates.CustomerAggregate;
+using DDD.Domain.Aggregates.CustomerAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace DDD.Application.Repositories

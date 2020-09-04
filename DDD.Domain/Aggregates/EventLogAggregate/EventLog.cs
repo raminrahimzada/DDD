@@ -1,7 +1,7 @@
 ﻿using System;
-using DDD.Core.Base;
+using DDD.Domain.Base;
 
-namespace DDD.Core.Aggregates.EventLogAggregate
+namespace DDD.Domain.Aggregates.EventLogAggregate
 {
     public class EventLog: AggregateRoot
     {

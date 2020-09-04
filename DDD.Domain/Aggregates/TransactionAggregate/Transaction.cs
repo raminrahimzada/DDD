@@ -1,7 +1,7 @@
 ﻿using System;
-using DDD.Core.Base;
+using DDD.Domain.Base;
 
-namespace DDD.Core.Aggregates.TransactionAggregate
+namespace DDD.Domain.Aggregates.TransactionAggregate
 {
     public class Transaction: AggregateRoot
     {

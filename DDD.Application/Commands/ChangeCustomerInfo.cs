@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using DDD.Application.Base;
 using DDD.Base;
-using DDD.Core;
-using DDD.Core.Exceptions;
+using DDD.Domain;
+using DDD.Domain.Exceptions;
 using FluentValidation;
 
 namespace DDD.Application.Commands

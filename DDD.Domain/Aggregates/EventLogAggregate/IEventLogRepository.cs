@@ -1,4 +1,4 @@
-﻿namespace DDD.Core.Aggregates.EventLogAggregate
+﻿namespace DDD.Domain.Aggregates.EventLogAggregate
 {
     public interface IEventLogRepository
     {

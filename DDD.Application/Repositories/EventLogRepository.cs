@@ -1,4 +1,4 @@
-﻿using DDD.Core.Aggregates.EventLogAggregate;
+﻿using DDD.Domain.Aggregates.EventLogAggregate;
 
 namespace DDD.Application.Repositories
 {

@@ -10,7 +10,6 @@ namespace DDD.Application.Configurations
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {
             builder.HasKey(x => x.Id);
-            //builder.Ignore(x => x.DomainEvents);
         }
     }
 }

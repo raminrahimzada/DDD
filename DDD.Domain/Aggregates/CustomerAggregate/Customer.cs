@@ -1,10 +1,10 @@
 ﻿using System;
 using DDD.Base;
-using DDD.Core.Base;
-using DDD.Core.Events;
-using DDD.Core.Exceptions;
+using DDD.Domain.Base;
+using DDD.Domain.Events;
+using DDD.Domain.Exceptions;
 
-namespace DDD.Core.Aggregates.CustomerAggregate
+namespace DDD.Domain.Aggregates.CustomerAggregate
 {
     public class Customer: AggregateRoot,IAggregateRoot
     {

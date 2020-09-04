@@ -1,4 +1,4 @@
-﻿using DDD.Core.Aggregates.CustomerAggregate;
+﻿using DDD.Domain.Aggregates.CustomerAggregate;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using DDD.Application.Commands;
 using DDD.Application.Queries;
 using DDD.Base;
-using DDD.Core.Exceptions;
+using DDD.Domain.Exceptions;
 using DDD.WebApi.DTO;
 using DDD.WebApi.ViewModels;
 

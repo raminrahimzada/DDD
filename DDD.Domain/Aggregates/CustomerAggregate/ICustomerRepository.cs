@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using DDD.Base;
 
-namespace DDD.Core.Aggregates.CustomerAggregate
+namespace DDD.Domain.Aggregates.CustomerAggregate
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
