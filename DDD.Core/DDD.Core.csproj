@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="8.0.0" />
+    <PackageReference Include="Mediatr" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Base\DDD.Base.csproj" />
   </ItemGroup>
 
 </Project>

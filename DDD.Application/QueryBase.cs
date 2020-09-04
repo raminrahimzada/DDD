@@ -1,8 +1,9 @@
-﻿using DDD.Core.Base;
+﻿//using DDD.Core.Base;
+//using EventFlow.Queries;
 
-namespace DDD.Application
-{
-    public class QueryBase<TResponse> : IQuery<TResponse>
-    {
-    }
-}
+//namespace DDD.Application
+//{
+//    public class QueryBase<TResponse> : IQuery<TResponse>
+//    {
+//    }
+//}

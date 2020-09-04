@@ -6,9 +6,10 @@ using DDD.Core.Aggregates.TransactionAggregate;
 using DDD.Core.Base;
 using DDD.Core.Events;
 
-namespace DDD.Application.DomainEventHandlers
+namespace DDD.Application.EventHandlers
 {
-    public class TransferCompletedDomainEventHandler : IDomainEventHandler<TransferCompletedDomainEvent>
+    public class TransferCompletedDomainEventHandler :
+        AbstractEventHandler<TransferCompletedDomainEvent>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -16,14 +17,12 @@ namespace DDD.Application.DomainEventHandlers
         {
             _unitOfWork = unitOfWork;
         }
-
-        public async Task Handle(TransferCompletedDomainEvent notification, CancellationToken cancellationToken)
+        public override Task Handle(TransferCompletedDomainEvent notification, CancellationToken cancellationToken)
         {
             var transaction =
-                new Transaction(notification.From.Id, notification.To.Id, notification.Amount, DateTime.Now);
+                new Transaction(Guid.NewGuid(), notification.From, notification.To, notification.Amount, DateTime.Now);
             _unitOfWork.TransactionRepo.Add(transaction);
-
-            await _unitOfWork.CommitAsync(cancellationToken);
+            return _unitOfWork.CommitAsync(cancellationToken);
         }
     }
 }

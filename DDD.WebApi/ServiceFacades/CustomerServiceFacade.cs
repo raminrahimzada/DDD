@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
-using DDD.Application;
 using DDD.Application.Commands;
 using DDD.Application.Queries;
+using DDD.Base;
+using DDD.Core.Exceptions;
 using DDD.WebApi.DTO;
 using DDD.WebApi.ViewModels;
 
@@ -10,21 +12,24 @@ namespace DDD.WebApi.ServiceFacades
 {
     public class CustomerServiceFacade
     {
-        private readonly ICustomMediator _mediator;
+        private readonly IGenericBus _bus;
 
-        public CustomerServiceFacade(ICustomMediator mediator)
+        public CustomerServiceFacade(IGenericBus bus)
         {
-            _mediator = mediator;
+            _bus = bus;
         }
-
         public async Task<ResponseModel<Guid>> CreateCustomer(CreateCustomerViewModel model)
         {
             try
             {
                 var id = Guid.NewGuid();
-                var command = new CreateCustomerCommand(id, model.Name);
-                await _mediator.Send(command);
-                return ResponseModel<Guid>.Success(id);
+                var command = new CreateCustomer.Command(id, model.Name);
+                var result = await _bus.Send(command, CancellationToken.None);
+                if (result.IsSucceed)
+                {
+                    return ResponseModel<Guid>.Success(id);
+                }
+                return ResponseModel<Guid>.Failure(new Exception());
             }
             catch (Exception e)
             {
@@ -36,8 +41,8 @@ namespace DDD.WebApi.ServiceFacades
         {
             try
             {
-                var command = new ChangeCustomerInfoCommand(model.CustomerId, model.NewName);
-                await _mediator.Send(command);
+                var command = new ChangeCustomerInfo.Command(model.CustomerId, model.NewName);
+                var result = await _bus.Send(command,CancellationToken.None);
                 return ResponseModel.Success();
             }
             catch (Exception e)
@@ -50,8 +55,8 @@ namespace DDD.WebApi.ServiceFacades
         {
             try
             {
-                var command=new MakeGiftCommand(fromCustomerId, toCustomerId, amount);
-                await _mediator.Send(command);
+                var command =new MakeGift.Command(fromCustomerId, toCustomerId, amount);
+                await _bus.Send(command, CancellationToken.None);
                 return ResponseModel.Success();
             }
             catch (Exception e)
@@ -64,13 +69,16 @@ namespace DDD.WebApi.ServiceFacades
         {
             try
             {
-                var query = new GetCustomerInfoQuery(model.CustomerId);
-                var result = await _mediator.Send(query);
+                var query = new GetCustomerInfo.Query(model.CustomerId);
+                var result = await _bus.Send(query, CancellationToken.None);
+                if (result == null)
+                    return ResponseModel<CustomerDTO>.Failure(new EntityNotFoundException(model.CustomerId));
+
                 var dto=new CustomerDTO
                 {
-                    Id = result.Id,
-                    Balance = result.Balance,
-                    Name = result.Name
+                    Id = result.CustomerId,
+                    Balance = result.CustomerBalance,
+                    Name = result.CustomerName
                 };
                 return ResponseModel<CustomerDTO>.Success(dto);
             }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DDD.Core.Base;
+using DDD.Base;
 
 namespace DDD.Core.Aggregates.CustomerAggregate
 {

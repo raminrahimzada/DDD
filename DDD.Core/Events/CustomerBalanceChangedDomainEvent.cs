@@ -1,9 +1,10 @@
 ﻿using System;
 using DDD.Core.Base;
 
+
 namespace DDD.Core.Events
 {
-    public class CustomerBalanceChangedDomainEvent : IDomainEvent
+    public class CustomerBalanceChangedDomainEvent : AbstractEvent
     {
         public Guid CustomerId { get; }
         public decimal OldAmount { get; }

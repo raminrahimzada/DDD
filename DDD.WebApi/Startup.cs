@@ -1,5 +1,6 @@
 using DDD.Application;
 using DDD.WebApi.ServiceFacades;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,14 +22,17 @@ namespace DDD.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            
             var connectionString = Configuration.GetConnectionString("AppDatabaseContext");
+            
             //previous layer's registration
             Bootstrapper.Register(services, b => b.UseSqlServer(connectionString));
 
             //current layer's registration
             services.AddScoped<CustomerServiceFacade>();
+            
+            services.AddMvc().AddFluentValidation();
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

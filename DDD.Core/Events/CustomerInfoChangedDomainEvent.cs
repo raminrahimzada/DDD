@@ -3,7 +3,7 @@ using DDD.Core.Base;
 
 namespace DDD.Core.Events
 {
-    public class CustomerInfoChangedDomainEvent: IDomainEvent
+    public class CustomerInfoChangedDomainEvent: AbstractEvent
     {
         public Guid CustomerId { get; }
         public string OldName { get; }

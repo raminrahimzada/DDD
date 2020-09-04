@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Reflection;
+using DDD.Base;
 using DDD.Core;
+using DDD.Core.Base;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +14,12 @@ namespace DDD.Application
         public static void Register(IServiceCollection services, Action<DbContextOptionsBuilder> dbContextOptions)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddMediatR(typeof(Bootstrapper).Assembly);
+
+            services.AddMediatR(typeof(Bootstrapper).GetTypeInfo().Assembly);
+            services.AddScoped<IMediator, Mediator>();
             services.AddDbContext<AppDatabaseContext>(dbContextOptions);
-            services.AddScoped<ICustomMediator, CustomMediator>();
-            services.AddScoped<IEventStore, EventStore>();
+            services.AddScoped<IGenericBus, MediatrBus>();
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
     }
 }

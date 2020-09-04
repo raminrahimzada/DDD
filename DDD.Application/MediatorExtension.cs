@@ -1,28 +1,22 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DDD.Core.Base;
-using MediatR;
+using DDD.Base;
 
 namespace DDD.Application
 {
     public static class MediatorExtension
     {
-        public static async Task DispatchDomainEventsAsync(this ICustomMediator mediator, AppDatabaseContext ctx)
+        public static async Task DispatchDomainEventsAsync(this IGenericBus bus, AppDatabaseContext ctx)
         {
             var domainEntities = ctx.ChangeTracker
-                .Entries<Entity>()
-                .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any())
+                .Entries<IAggregateRoot>()
                 .ToArray();
 
             var domainEvents = domainEntities
-                .SelectMany(x => x.Entity.DomainEvents)
+                .SelectMany(x => x.Entity.DequeueUncommittedEvents())
                 .ToList();
-
-            domainEntities.ToList()
-                .ForEach(entity => entity.Entity.ClearDomainEvents());
-
             foreach (var domainEvent in domainEvents)
-                await mediator.Publish(domainEvent);
+                await bus.Publish(domainEvent);
         }
     }
 }

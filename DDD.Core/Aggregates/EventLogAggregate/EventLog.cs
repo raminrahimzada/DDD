@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using DDD.Core.Base;
 
 namespace DDD.Core.Aggregates.EventLogAggregate
 {
-    public class EventLog:Entity,IAggregateRoot
+    public class EventLog: AggregateRoot
     {
         public enum EventLogTypes:byte
         {
@@ -18,7 +16,7 @@ namespace DDD.Core.Aggregates.EventLogAggregate
         public DateTime When { get;  }
         public string Data { get;  }
 
-        public EventLog(EventLogTypes logType, string type, DateTime @when, string data)
+        public EventLog(Guid id,EventLogTypes logType, string type, DateTime @when, string data):base(id)
         {
             LogType = logType;
             Type = type;

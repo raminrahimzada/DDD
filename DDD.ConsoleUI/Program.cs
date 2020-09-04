@@ -9,6 +9,7 @@ namespace DDD.ConsoleUI
             var factory = new ApplicationDbContextFactory();
             using (var ctx= factory.CreateDbContext())
             {
+                ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
                 Console.WriteLine("Database created !!");
             }

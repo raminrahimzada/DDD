@@ -1,9 +1,10 @@
-﻿using DDD.Core.Base;
+﻿//using DDD.Core.Base;
+//
 
-namespace DDD.Application
-{
-    public class CommandBase : ICommand
-    {
+//namespace DDD.Application
+//{
+//    public class CommandBase<T> : ICommand
+//    {
 
-    }
-}
+//    }
+//}

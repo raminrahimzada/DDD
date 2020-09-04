@@ -1,4 +1,4 @@
-﻿using DDD.Core.Base;
+﻿using DDD.Base;
 
 namespace DDD.Core.Aggregates.TransactionAggregate
 {

@@ -1,16 +1,17 @@
-﻿using DDD.Core.Aggregates.CustomerAggregate;
+﻿using System;
 using DDD.Core.Base;
+
 
 namespace DDD.Core.Events
 {
-    public class TransferCompletedDomainEvent : IDomainEvent
+    public class TransferCompletedDomainEvent : AbstractEvent
     {
-        public Customer From { get; }
-        public Customer To { get; }
+        public Guid From { get; }
+        public Guid To { get; }
 
         public decimal Amount { get; }
 
-        public TransferCompletedDomainEvent(Customer @from, Customer to, decimal amount)
+        public TransferCompletedDomainEvent(Guid @from, Guid to, decimal amount)
         {
             From = @from;
             To = to;

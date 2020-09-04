@@ -1,29 +1,28 @@
 ﻿using System;
+using DDD.Base;
 using DDD.Core.Base;
 using DDD.Core.Events;
 using DDD.Core.Exceptions;
 
 namespace DDD.Core.Aggregates.CustomerAggregate
 {
-    public class Customer:Entity,IAggregateRoot
+    public class Customer: AggregateRoot,IAggregateRoot
     {
-        public string Name { get; private set; }
-
-        public decimal Balance { get; private set; }
-
-        public Customer(Guid id,string name, decimal balance)
+        public Customer(Guid id, string customerName, decimal balance) : base(id)
         {
-            Id = id;
-            Name = name;
+            CustomerName = customerName;
             Balance = balance;
         }
 
+        public string CustomerName { get;private  set; }
+
+        public decimal Balance { get;private set; }
+
         public void ChangeInfo(string newName)
         {
-            if (newName == Name) return;
-            
-            AddDomainEvent(new CustomerInfoChangedDomainEvent(Id, Name, newName));
-            Name = newName;
+            if (newName == CustomerName) return;
+            ApplyEvent(new CustomerInfoChangedDomainEvent(Id, CustomerName, newName));
+            CustomerName = newName;
         }
 
         public void GiftMoney(Customer otherCustomer,decimal amount)
@@ -37,8 +36,8 @@ namespace DDD.Core.Aggregates.CustomerAggregate
             otherCustomer.AcceptGift(amount);
 
 
-            AddDomainEvent(new CustomerBalanceChangedDomainEvent(Id, oldAmount, newAmount));
-            AddDomainEvent(new TransferCompletedDomainEvent(this, otherCustomer, amount));
+            ApplyEvent(new CustomerBalanceChangedDomainEvent(Id, oldAmount, newAmount));
+            ApplyEvent(new TransferCompletedDomainEvent(Id, otherCustomer.Id, amount));
         }
 
         public void AcceptGift(decimal amount)
@@ -47,7 +46,7 @@ namespace DDD.Core.Aggregates.CustomerAggregate
             var newAmount = Balance + amount;
             Balance = newAmount;
 
-            AddDomainEvent(new CustomerBalanceChangedDomainEvent(Id, oldAmount, newAmount));
+            ApplyEvent(new CustomerBalanceChangedDomainEvent(Id, oldAmount, newAmount));
         }
     }
 }
