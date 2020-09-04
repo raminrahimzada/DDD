@@ -12,7 +12,7 @@ namespace DDD.Core.Base
         public virtual string Name => "";
 
         [NonSerialized]
-        private readonly Queue<AbstractEvent> _uncommittedEvents = new Queue<AbstractEvent>();
+        private readonly Queue<DomainEvent> _uncommittedEvents = new Queue<DomainEvent>();
 
         protected AggregateRoot()
         { }
@@ -21,7 +21,7 @@ namespace DDD.Core.Base
         {
             Id = id;
         }
-        IEnumerable<IEvent> IAggregateRoot.DequeueUncommittedEvents()
+        IEnumerable<IDomainEvent> IAggregateRoot.DequeueUncommittedEvents()
         {
             while (_uncommittedEvents.Count>0)
             {
@@ -29,10 +29,10 @@ namespace DDD.Core.Base
             }
         }
 
-        protected virtual void ApplyEvent(AbstractEvent @event)
+        protected virtual void ApplyEvent(DomainEvent domainEvent)
         {
             Version++;
-            _uncommittedEvents.Enqueue(@event);
+            _uncommittedEvents.Enqueue(domainEvent);
         }
     }
 }

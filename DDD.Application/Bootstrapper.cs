@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
+using DDD.Application.Base;
 using DDD.Base;
 using DDD.Core;
-using DDD.Core.Base;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

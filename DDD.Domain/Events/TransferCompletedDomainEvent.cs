@@ -4,7 +4,7 @@ using DDD.Core.Base;
 
 namespace DDD.Core.Events
 {
-    public class TransferCompletedDomainEvent : AbstractEvent
+    public class TransferCompletedDomainEvent : DomainEvent
     {
         public Guid From { get; }
         public Guid To { get; }

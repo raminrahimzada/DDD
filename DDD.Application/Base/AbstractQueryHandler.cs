@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using DDD.Base;
 using MediatR;
 
-namespace DDD.Core.Base
+namespace DDD.Application.Base
 {
     public abstract class AbstractQueryHandler<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>,
         IRequestHandler<TQuery, TResponse> where TQuery : AbstractQuery<TResponse>

@@ -9,6 +9,6 @@ namespace DDD.Base
         int Version { get; }
         DateTime CreatedUtc { get; }
 
-        IEnumerable<IEvent> DequeueUncommittedEvents();
+        IEnumerable<IDomainEvent> DequeueUncommittedEvents();
     }
 }

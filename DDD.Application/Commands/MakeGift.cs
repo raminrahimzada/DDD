@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using DDD.Application.Base;
 using DDD.Base;
 using DDD.Core;
-using DDD.Core.Base;
 using DDD.Core.Exceptions;
 using FluentValidation;
 
@@ -37,6 +37,7 @@ namespace DDD.Application.Commands
                 RuleFor(x => x.FromCustomerId).NotEmpty();
                 RuleFor(x => x.ToCustomerId).NotEmpty();
                 RuleFor(x => x.Amount).NotEmpty();
+                RuleFor(x => x.Amount).GreaterThan(0.0M);
             }
         }
         public class CommandHandler :

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using DDD.Application.Base;
 using DDD.Base;
 using DDD.Core;
 using DDD.Core.Aggregates.CustomerAggregate;
-using DDD.Core.Base;
 using FluentValidation;
 
 namespace DDD.Application.Commands

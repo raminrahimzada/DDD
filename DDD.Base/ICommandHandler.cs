@@ -9,7 +9,7 @@ namespace DDD.Base
     }
     public interface IGenericBus
     {
-        Task Publish(params IEvent[] events);
+        Task Publish(params IDomainEvent[] domainEvents);
         Task<ExecutionResult> Send(ICommand command, CancellationToken cancellationToken = default(CancellationToken));
         Task<TResponse> Send<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default(CancellationToken));
     }

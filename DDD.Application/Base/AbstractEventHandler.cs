@@ -1,12 +1,13 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using DDD.Base;
+using DDD.Core.Base;
 using MediatR;
 
-namespace DDD.Core.Base
+namespace DDD.Application.Base
 {
     public abstract class AbstractEventHandler<TEvent> : IEventHandler<TEvent>, INotificationHandler<TEvent>
-        where TEvent : AbstractEvent
+        where TEvent : DomainEvent
     {
         public abstract Task Handle(TEvent notification, CancellationToken cancellationToken);
     }

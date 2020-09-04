@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using DDD.Base;
 using MediatR;
 
-namespace DDD.Core.Base
+namespace DDD.Application.Base
 {
     public class MediatrBus : IGenericBus
     {
@@ -15,9 +15,9 @@ namespace DDD.Core.Base
             _mediator = mediator ?? throw new Exception($"Missing dependency '{nameof(IMediator)}'");
         }
 
-        public async Task Publish(params IEvent[] events)
+        public async Task Publish(params IDomainEvent[] domainEvents)
         {
-            foreach (var @event in events)
+            foreach (var @event in domainEvents)
             {
                 await _mediator.Publish(@event);
             }

@@ -1,6 +1,6 @@
 ﻿namespace DDD.Base
 {
-    public interface IEvent
+    public interface IDomainEvent
     {
 
     }

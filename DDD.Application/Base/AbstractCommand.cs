@@ -2,7 +2,7 @@
 using DDD.Base;
 using MediatR;
 
-namespace DDD.Core.Base
+namespace DDD.Application.Base
 {
     public class AbstractCommand : ICommand, IRequest<ExecutionResult>
     {

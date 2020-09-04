@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using DDD.Base;
 using MediatR;
 
-namespace DDD.Core.Base
+namespace DDD.Application.Base
 {
     public abstract class AbstractCommandHandler<TCommand>
         : ICommandHandler<TCommand>

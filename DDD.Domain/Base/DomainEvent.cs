@@ -4,11 +4,11 @@ using MediatR;
 
 namespace DDD.Core.Base
 {
-    public abstract class AbstractEvent : IEvent,INotification
+    public abstract class DomainEvent : IDomainEvent,INotification
     {
         public Guid Id { get; set; }
 
-        protected AbstractEvent()
+        protected DomainEvent()
         {
             Id = Guid.NewGuid();
         }

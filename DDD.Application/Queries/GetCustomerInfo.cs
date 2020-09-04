@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using DDD.Application.Base;
 using DDD.Core;
-using DDD.Core.Base;
 using DDD.Core.Exceptions;
 using FluentValidation;
 
