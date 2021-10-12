@@ -1,5 +1,6 @@
 using System.IO;
 using DDD.Application;
+using DDD.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DDD.Base;
+using System.Windows.Input;
+using DDD.Domain;
+using DDD.Domain.Base;
 using MediatR;
 
 namespace DDD.Application.Base
@@ -23,16 +25,14 @@ namespace DDD.Application.Base
             }
         }
 
-        public Task<ExecutionResult> Send(ICommand command, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ExecutionResult> Send(AbstractCommand command, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var commandForMediatr = (IRequest<ExecutionResult>) command;
-            return _mediator.Send(commandForMediatr, cancellationToken);
+            return _mediator.Send(command, cancellationToken);
         }
 
-        public Task<TResponse> Send<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ExecutionResult<TResponse>> Send<TResponse>(AbstractQuery<TResponse> query, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var queryForMediatr = (IRequest<TResponse>)query;
-            return _mediator.Send(queryForMediatr, cancellationToken);
+            return _mediator.Send(query, cancellationToken);
         }
     }
 }

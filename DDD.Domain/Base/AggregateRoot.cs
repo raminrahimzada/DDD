@@ -1,9 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using DDD.Base;
 
 namespace DDD.Domain.Base
 {
+    public interface IDomainEvent
+    {
+
+    }
+    public interface IAggregateRoot
+    {
+        Guid Id { get; }
+        int Version { get; }
+        DateTime CreatedUtc { get; }
+
+        IEnumerable<IDomainEvent> DequeueUncommittedEvents();
+    }
+    public interface IRepository<T> where T : IAggregateRoot
+    {
+    }
     public abstract class AggregateRoot : IAggregateRoot
     {
         public Guid Id { get; protected set; }

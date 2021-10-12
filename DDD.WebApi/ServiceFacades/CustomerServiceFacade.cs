@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DDD.Application.Commands;
-using DDD.Application.Queries;
-using DDD.Base;
+using DDD.Application;
+using DDD.Domain;
 using DDD.Domain.Exceptions;
-using DDD.WebApi.DTO;
 using DDD.WebApi.ViewModels;
 
 namespace DDD.WebApi.ServiceFacades
@@ -18,73 +16,59 @@ namespace DDD.WebApi.ServiceFacades
         {
             _bus = bus;
         }
-        public async Task<ResponseModel<Guid>> CreateCustomer(CreateCustomerViewModel model)
+        public async Task<ExecutionResult<Guid>> CreateCustomer(CreateCustomerViewModel model)
         {
             try
             {
                 var id = Guid.NewGuid();
-                var command = new CreateCustomer.Command(id, model.Name);
-                var result = await _bus.Send(command, CancellationToken.None);
-                if (result.IsSucceed)
-                {
-                    return ResponseModel<Guid>.Success(id);
-                }
-                return ResponseModel<Guid>.Failure(new Exception());
-            }
-            catch (Exception e)
-            {
-                return ResponseModel<Guid>.Failure(e);
-            }
-        }
-
-        public async Task<ResponseModel> ChangeInfo(ChangeCustomerInfoViewModel model)
-        {
-            try
-            {
-                var command = new ChangeCustomerInfo.Command(model.CustomerId, model.NewName);
-                var result = await _bus.Send(command,CancellationToken.None);
-                return ResponseModel.Success();
-            }
-            catch (Exception e)
-            {
-                return ResponseModel.Failure(e);
-            }
-        }
-
-        public async Task<ResponseModel> MakeGift(Guid fromCustomerId, Guid toCustomerId, decimal amount)
-        {
-            try
-            {
-                var command =new MakeGift.Command(fromCustomerId, toCustomerId, amount);
+                var command = new CreateCustomerCommand(id, model.Name);
                 await _bus.Send(command, CancellationToken.None);
-                return ResponseModel.Success();
+                return ExecutionResult.Success(id);
             }
             catch (Exception e)
             {
-                return ResponseModel.Failure(e);
+                return ExecutionResult<Guid>.Fail(e);
             }
         }
 
-        public async Task<ResponseModel<CustomerDTO>> GetInfo(GetCustomerInfoViewModel model)
+        public async Task<ExecutionResult> ChangeInfo(ChangeCustomerInfoViewModel model)
         {
             try
             {
-                var query = new GetCustomerInfo.Query(model.CustomerId);
-                var result = await _bus.Send(query, CancellationToken.None);
-                if (result == null)
-                    return ResponseModel<CustomerDTO>.Failure(new EntityNotFoundException(model.CustomerId));
-
-                var dto=new CustomerDTO
-                {
-                    Id = result.CustomerId,
-                    Balance = result.CustomerBalance,
-                    Name = result.CustomerName
-                };
-                return ResponseModel<CustomerDTO>.Success(dto);
+                var command = new ChangeCustomerInfoCommand(model.CustomerId, model.NewName);
+                var result = await _bus.Send(command,CancellationToken.None);
+                return ExecutionResult.Success();
             }
             catch (Exception e)
             {
-                return ResponseModel<CustomerDTO>.Failure(e);
+                return ExecutionResult.Fail(e);
+            }
+        }
+
+        public async Task<ExecutionResult> MakeGift(Guid fromCustomerId, Guid toCustomerId, decimal amount)
+        {
+            try
+            {
+                var command =new MakeGiftCommand(fromCustomerId, toCustomerId, amount);
+                await _bus.Send(command, CancellationToken.None);
+                return ExecutionResult.Success();
+            }
+            catch (Exception e)
+            {
+                return ExecutionResult.Fail(e);
+            }
+        }
+
+        public async Task<ExecutionResult<CustomerDTO>> GetInfo(GetCustomerInfoViewModel model)
+        {
+            try
+            {
+                var query = new GetCustomerInfoQuery(model.CustomerId);
+                return await _bus.Send(query, CancellationToken.None);
+            }
+            catch (Exception e)
+            {
+                return ExecutionResult<CustomerDTO>.Fail(e);
             }
         }
     }

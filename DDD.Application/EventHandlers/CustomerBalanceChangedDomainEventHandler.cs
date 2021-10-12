@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using DDD.Application.Base;
 using DDD.Domain.Events;
 
-namespace DDD.Application.EventHandlers
+namespace DDD.Application
 {
-    public class CustomerBalanceChangedDomainEventHandler:
-        AbstractEventHandler<CustomerBalanceChangedDomainEvent>
+    public partial class Handler:
+        IEventHandler<CustomerBalanceChangedDomainEvent>
     {
-        public override Task Handle(CustomerBalanceChangedDomainEvent notification, CancellationToken cancellationToken)
+        public Task Handle(CustomerBalanceChangedDomainEvent notification, CancellationToken cancellationToken)
         {
             //TODO
             return Task.CompletedTask;

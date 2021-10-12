@@ -22,7 +22,7 @@ namespace DDD.Application
             var validator = _validationFactory.GetValidator(request.GetType());
             var result = validator?.Validate(new ValidationContext<TRequest>(request));
 
-            if (result != null && !result.IsValid)
+            if (result is { IsValid: false })
             {
                 throw new ValidationException(result.Errors);
             }

@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using DDD.Domain;
 using DDD.Domain.Base;
-using DDD.Infrastructure;
 
-
-namespace DDD.Application
+namespace DDD.Infrastructure
 {
     public static class MediatorExtension
     {

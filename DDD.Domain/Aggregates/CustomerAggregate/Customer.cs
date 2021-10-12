@@ -1,5 +1,4 @@
 ﻿using System;
-using DDD.Base;
 using DDD.Domain.Base;
 using DDD.Domain.Events;
 using DDD.Domain.Exceptions;

@@ -1,4 +1,5 @@
-﻿using DDD.Base;
+﻿
+using DDD.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

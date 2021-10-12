@@ -1,5 +1,4 @@
 ﻿using System;
-using DDD.Base;
 using MediatR;
 
 namespace DDD.Domain.Base

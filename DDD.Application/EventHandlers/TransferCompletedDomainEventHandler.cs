@@ -9,7 +9,7 @@ using DDD.Domain.Events;
 namespace DDD.Application.EventHandlers
 {
     public class TransferCompletedDomainEventHandler :
-        AbstractEventHandler<TransferCompletedDomainEvent>
+        IEventHandler<TransferCompletedDomainEvent>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -17,7 +17,7 @@ namespace DDD.Application.EventHandlers
         {
             _unitOfWork = unitOfWork;
         }
-        public override Task Handle(TransferCompletedDomainEvent notification, CancellationToken cancellationToken)
+        public Task Handle(TransferCompletedDomainEvent notification, CancellationToken cancellationToken)
         {
             var transaction =
                 new Transaction(Guid.NewGuid(), notification.From, notification.To, notification.Amount, DateTime.Now);
