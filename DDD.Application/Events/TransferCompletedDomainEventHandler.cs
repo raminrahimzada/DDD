@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DDD.Application.Base;
-using DDD.Domain;
 using DDD.Domain.Aggregates.TransactionAggregate;
 using DDD.Domain.Events;
 

@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using DDD.Domain;
 using DDD.Domain.Base;
 
 namespace DDD.Domain

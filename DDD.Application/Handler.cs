@@ -1,6 +1,3 @@
-using System;
-using DDD.Domain;
-
 namespace DDD.Application
 {
     public partial class Handler

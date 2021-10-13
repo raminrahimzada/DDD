@@ -1,8 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using DDD.Domain;
-using DDD.Domain.Aggregates.CustomerAggregate;
-using DDD.Domain.Aggregates.EventLogAggregate;
 using DDD.Infrastructure.Configurations;
 using DDD.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;

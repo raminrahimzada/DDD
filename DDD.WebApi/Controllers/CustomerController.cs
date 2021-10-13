@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DDD.WebApi.ServiceFacades;
 using DDD.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -18,32 +17,32 @@ namespace DDD.WebApi.Controllers
         }
 
         [Route(nameof(Create))]
-        [HttpGet]
-        public async Task<IActionResult> Create([FromQuery]CreateCustomerViewModel model)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody]CreateCustomerViewModel model)
         {
             var result=await _customerServiceFacade.CreateCustomer(model);
             return Json(result);
         }
         
         [Route(nameof(MakeGift))]
-        [HttpGet]
-        public async Task<IActionResult> MakeGift( Guid from, Guid to,decimal amount)
+        [HttpPost]
+        public async Task<IActionResult> MakeGift([FromBody] MakeGiftViewModel model)
         {
-            var result = await _customerServiceFacade.MakeGift(from, to, amount);
+            var result = await _customerServiceFacade.MakeGift(model);
             return Json(result);
         }
 
         [Route(nameof(ChangeInfo))]
-        [HttpGet]
-        public async Task<IActionResult> ChangeInfo([FromQuery] ChangeCustomerInfoViewModel model)
+        [HttpPost]
+        public async Task<IActionResult> ChangeInfo([FromBody] ChangeCustomerInfoViewModel model)
         {
             var result = await _customerServiceFacade.ChangeInfo(model);
             return Json(result);
         }
 
         [Route(nameof(Info))]
-        [HttpGet]
-        public async Task<IActionResult> Info([FromQuery] GetCustomerInfoViewModel model)
+        [HttpPost]
+        public async Task<IActionResult> Info([FromBody] GetCustomerInfoViewModel model)
         {
             var result = await _customerServiceFacade.GetInfo(model);
             return Json(result);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using DDD.Domain;
 using DDD.Domain.Aggregates.CustomerAggregate;
+using FluentValidation;
 
 namespace DDD.Application
 {
@@ -21,6 +22,14 @@ namespace DDD.Application
         }
     }
 
+    public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCommand>
+    {
+        public CreateCustomerCommandValidator()
+        {
+            RuleFor(x => x.Id).NotEqual(Guid.Empty);
+            RuleFor(x => x.Name).NotEqual(string.Empty);
+        }
+    }
     public partial class Handler : ICommandHandler<CreateCustomerCommand>
     {
         public async Task<ExecutionResult> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)

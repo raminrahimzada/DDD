@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using DDD.Domain;
 using DDD.Domain.Exceptions;
-using MediatR;
+using FluentValidation;
 
 namespace DDD.Application
 {
@@ -20,6 +20,15 @@ namespace DDD.Application
             FromCustomerId = fromCustomerId;
             ToCustomerId = toCustomerId;
             Amount = amount;
+        }
+    }
+    public class MakeGiftCommandValidator : AbstractValidator<MakeGiftCommand>
+    {
+        public MakeGiftCommandValidator()
+        {
+            RuleFor(x => x.FromCustomerId).NotEqual(Guid.Empty);
+            RuleFor(x => x.ToCustomerId).NotEqual(Guid.Empty);
+            RuleFor(x => x.Amount).GreaterThan(0.0M);
         }
     }
     public partial class Handler : ICommandHandler<MakeGiftCommand>

@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using DDD.Application;
 using DDD.Domain;
-using DDD.Domain.Exceptions;
 using DDD.WebApi.ViewModels;
 
 namespace DDD.WebApi.ServiceFacades
@@ -36,8 +35,7 @@ namespace DDD.WebApi.ServiceFacades
             try
             {
                 var command = new ChangeCustomerInfoCommand(model.CustomerId, model.NewName);
-                var result = await _bus.Send(command,CancellationToken.None);
-                return ExecutionResult.Success();
+                return await _bus.Send(command,CancellationToken.None);
             }
             catch (Exception e)
             {
@@ -45,13 +43,12 @@ namespace DDD.WebApi.ServiceFacades
             }
         }
 
-        public async Task<ExecutionResult> MakeGift(Guid fromCustomerId, Guid toCustomerId, decimal amount)
+        public async Task<ExecutionResult> MakeGift(MakeGiftViewModel model)
         {
             try
             {
-                var command =new MakeGiftCommand(fromCustomerId, toCustomerId, amount);
-                await _bus.Send(command, CancellationToken.None);
-                return ExecutionResult.Success();
+                var command =new MakeGiftCommand(model.FromCustomerId, model.ToCustomerId, model.Amount);
+                return await _bus.Send(command, CancellationToken.None);
             }
             catch (Exception e)
             {

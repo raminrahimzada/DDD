@@ -23,7 +23,7 @@ namespace DDD.Domain.Base
         public Guid Id { get; protected set; }
         public int Version { get; protected set; }
         public DateTime CreatedUtc { get; protected set; }
-        public virtual string Name => "";
+        //public virtual string Name => "";
 
         [NonSerialized]
         private readonly Queue<DomainEvent> _uncommittedEvents = new Queue<DomainEvent>();

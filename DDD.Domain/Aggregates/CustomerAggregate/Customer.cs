@@ -5,23 +5,23 @@ using DDD.Domain.Exceptions;
 
 namespace DDD.Domain.Aggregates.CustomerAggregate
 {
-    public class Customer: AggregateRoot,IAggregateRoot
+    public class Customer: AggregateRoot
     {
-        public Customer(Guid id, string customerName, decimal balance) : base(id)
+        public Customer(Guid id, string name, decimal balance) : base(id)
         {
-            CustomerName = customerName;
+            Name = name;
             Balance = balance;
         }
 
-        public string CustomerName { get;private  set; }
+        public string Name { get;private  set; }
 
         public decimal Balance { get;private set; }
 
         public void ChangeInfo(string newName)
         {
-            if (newName == CustomerName) return;
-            ApplyEvent(new CustomerInfoChangedDomainEvent(Id, CustomerName, newName));
-            CustomerName = newName;
+            if (newName == Name) return;
+            ApplyEvent(new CustomerInfoChangedDomainEvent(Id, Name, newName));
+            Name = newName;
         }
 
         public void GiftMoney(Customer otherCustomer,decimal amount)

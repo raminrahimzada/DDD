@@ -20,16 +20,16 @@ namespace DDD.Application
             RequestHandlerDelegate<TResponse> next)
         {
             var validator = _validationFactory.GetValidator(request.GetType());
-            var result = validator?.Validate(new ValidationContext<TRequest>(request));
-
-            if (result is { IsValid: false })
+            if (validator != null)
             {
-                throw new ValidationException(result.Errors);
+                var result = await validator.ValidateAsync(new ValidationContext<TRequest>(request), cancellationToken);
+
+                if (result is { IsValid: false })
+                {
+                    throw new ValidationException(result.Errors);
+                }
             }
-
-            var response = await next();
-
-            return response;
+            return await next();
         }
     }
 }

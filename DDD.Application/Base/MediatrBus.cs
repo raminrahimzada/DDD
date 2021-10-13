@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using DDD.Domain;
 using DDD.Domain.Base;
 using MediatR;

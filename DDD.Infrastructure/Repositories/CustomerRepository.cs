@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using DDD.Domain.Aggregates.CustomerAggregate;
 using Microsoft.EntityFrameworkCore;

@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DDD.Domain;
 using DDD.Domain.Exceptions;
-using MediatR;
+using FluentValidation;
 
 namespace DDD.Application
 {
@@ -19,6 +19,14 @@ namespace DDD.Application
         }
     }
 
+    public class ChangeCustomerInfoCommandValidator : AbstractValidator<ChangeCustomerInfoCommand>
+    {
+        public ChangeCustomerInfoCommandValidator()
+        {
+            RuleFor(x => x.CustomerId).NotEqual(Guid.Empty);
+            RuleFor(x => x.NewName).NotEqual(string.Empty);
+        }
+    }
     public partial class Handler : ICommandHandler<ChangeCustomerInfoCommand>
     {
         public async Task<ExecutionResult> Handle(ChangeCustomerInfoCommand request, CancellationToken cancellationToken)

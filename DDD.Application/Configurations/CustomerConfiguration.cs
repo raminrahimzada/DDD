@@ -13,7 +13,7 @@ namespace DDD.Application.Configurations
             
             builder.ToTable("Customers");
             
-            builder.PropertyEx(x => x.CustomerName).IsRequired();
+            builder.PropertyEx(x => x.Name).IsRequired();
             builder.PropertyEx(x => x.Balance).IsRequired().HasDefaultValue(0.0M);
         }
     }

@@ -6,11 +6,13 @@ namespace DDD.Domain
     {
         public bool IsSucceed { get; }
         public string ErrorCode { get; set; }
-        
-        protected ExecutionResult(bool isSuccess,string errorCode)
+        public string ErrorDescription { get; set; }
+
+        protected ExecutionResult(bool isSuccess,string errorCode,string errorDescription)
         {
             IsSucceed = isSuccess;
             ErrorCode = errorCode;
+            ErrorDescription = errorDescription;
         }
         public static ExecutionResult<TResponse> Success<TResponse>(TResponse response)
         {
@@ -18,12 +20,12 @@ namespace DDD.Domain
         }
         public static ExecutionResult Success()
         {
-            return new ExecutionResult(true, null);
+            return new ExecutionResult(true, null, null);
         }
-        public static ExecutionResult Fail(string errorCode) => new ExecutionResult(false, errorCode);
+        public static ExecutionResult Fail(string errorCode,string errorDescription="Something bad happened :(") => new ExecutionResult(false, errorCode,errorDescription);
         public static ExecutionResult Fail(Exception e)
         {
-            return new ExecutionResult(false, e?.GetType()?.Name ?? "Exception");
+            return new ExecutionResult(false, e.GetType().Name, e.Message);
         }
         public override bool Equals(object obj)
         {
